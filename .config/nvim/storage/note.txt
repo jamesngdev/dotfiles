@@ -1,0 +1,17 @@
+# Export mongoDB
+mongodump -d <database_name> -o <directory_backup>
+
+# Import mongoDB
+mongorestore -d <database_name> <directory_backup>
+mongorestore --uri "mongodb+srv://<username>:<password>@<host>/<db_name>?retryWrites=true&w=majority" <directory_backup>
+
+# Zip a folder
+
+- Install zip, unzip
+sudo apt install zip unzip
+
+- Zip a folder
+zip -r <zip_file_name> <folder_name>
+
+- Unzip a folder
+unzip <zip_file_name> -d <destination_folder>
