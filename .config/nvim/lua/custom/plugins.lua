@@ -106,62 +106,6 @@ local plugins = {
     end,
   },
   {
-    "jackMort/ChatGPT.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("chatgpt").setup {
-        api_key_cmd = "echo $OPENAI_API_KEY",
-
-        chat = {
-          welcome_message = "Hello jamesngdev, how can I help you today?",
-          keymaps = {
-            close = "<C-c>",
-            yank_last = "<C-y>",
-            yank_last_code = "<C-k>",
-            scroll_up = "<C-u>",
-            scroll_down = "<C-d>",
-            new_session = "<C-n>",
-            cycle_windows = "<Tab>",
-            cycle_modes = "<C-f>",
-            next_message = "<C-j>",
-            prev_message = "<C-k>",
-            select_session = "o",
-            rename_session = "r",
-            delete_session = "d",
-            draft_message = "<C-r>",
-            edit_message = "e",
-            delete_message = "d",
-            toggle_settings = "<C-o>",
-            toggle_sessions = "<C-p>",
-            toggle_help = "<C-h>",
-            toggle_message_role = "<C-r>",
-            toggle_system_role_open = "<C-s>",
-            stop_generating = "<C-x>",
-          },
-        },
-        popup_layout = {
-          default = "center",
-          center = {
-            width = "80%",
-            height = "80%",
-          },
-          right = {
-            width = "30%",
-            width_settings_open = "50%",
-          },
-        },
-        show_quickfixes_cmd = "Trouble quickfix",
-        actions_paths = { "~/.config/nvim/custom_actions.json" },
-      }
-    end,
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "folke/trouble.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
-  },
-  {
     "themaxmarchuk/tailwindcss-colors.nvim",
     event = "VeryLazy",
     config = function()
