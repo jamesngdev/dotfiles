@@ -481,4 +481,3 @@ set -g @dracula-plugins "battery time weather"
 set -g @dracula-show-fahrenheit false
 set -g @dracula-show-location false
 set -g @dracula-time-format "%F %R"
-
