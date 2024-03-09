@@ -13,6 +13,18 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+lspconfig.cssls.setup {
+  css = { validate = true, lint = {
+    unknownAtRules = "ignore",
+  } },
+  scss = { validate = true, lint = {
+    unknownAtRules = "ignore",
+  } },
+  less = { validate = true, lint = {
+    unknownAtRules = "ignore",
+  } },
+}
+
 --
 -- lspconfig.pyright.setup { blabla}
 --
