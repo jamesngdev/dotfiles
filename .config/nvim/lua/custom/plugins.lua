@@ -152,18 +152,48 @@ local plugins = {
       }
     end,
   },
+  -- {
+  --   "folke/noice.nvim",
+  --   event = "VeryLazy",
+  --   dependencies = {
+  --     "MunifTanjim/nui.nvim",
+  --     "rcarriga/nvim-notify",
+  --   },
+  --   opts = function()
+  --     return require "custom.configs.noice"
+  --   end,
+  --   keys = function()
+  --     return require "custom.configs.noice_keymap"
+  --   end,
+  -- },
   {
-    "folke/noice.nvim",
+    "andweeb/presence.nvim",
     event = "VeryLazy",
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
-    },
-    opts = function()
-      return require "custom.configs.noice"
+    config = function()
+      require("presence"):setup {
+        auto_update = true,
+        neovim_image_text = "The One True Text Editor",
+        main_image = "neovim",
+      }
     end,
-    keys = function()
-      return require "custom.configs.noice_keymap"
+  },
+  {
+    "karb94/neoscroll.nvim",
+    event = "VeryLazy",
+    config = function()
+      local t = {}
+      t["<C-k>"] = { "scroll", { "-vim.wo.scroll", "true", "350", "sine", [['cursorline']] } }
+      t["<C-j>"] = { "scroll", { "vim.wo.scroll", "true", "350", "sine", [['cursorline']] } }
+
+      require("neoscroll").setup {
+        hide_cursor = true,
+        stop_eof = true,
+        respect_scrolloff = false,
+        cursor_scrolls_alone = true,
+        mappings = t,
+      }
+
+      require("neoscroll.config").set_mappings(t)
     end,
   },
 }
