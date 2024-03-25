@@ -152,38 +152,38 @@ local plugins = {
       }
     end,
   },
-  -- {
-  --   "folke/noice.nvim",
-  --   event = "VeryLazy",
-  --   dependencies = {
-  --     "MunifTanjim/nui.nvim",
-  --     "rcarriga/nvim-notify",
-  --   },
-  --   opts = function()
-  --     return require "custom.configs.noice"
-  --   end,
-  --   keys = function()
-  --     return require "custom.configs.noice_keymap"
-  --   end,
-  -- },
   {
-    "andweeb/presence.nvim",
+    "folke/noice.nvim",
     event = "VeryLazy",
-    config = function()
-      require("presence"):setup {
-        auto_update = true,
-        neovim_image_text = "The One True Text Editor",
-        main_image = "neovim",
-      }
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+    opts = function()
+      return require "custom.configs.noice"
+    end,
+    keys = function()
+      return require "custom.configs.noice_keymap"
     end,
   },
+  -- {
+  --   "andweeb/presence.nvim",
+  --   event = "VeryLazy",
+  --   config = function()
+  --     require("presence"):setup {
+  --       auto_update = true,
+  --       -- neovim_image_text = "VSCode",
+  --       main_image = "neovim",
+  --     }
+  --   end,
+  -- },
   {
     "karb94/neoscroll.nvim",
     event = "VeryLazy",
     config = function()
       local t = {}
-      t["<C-k>"] = { "scroll", { "-vim.wo.scroll", "true", "350", "sine", [['cursorline']] } }
-      t["<C-j>"] = { "scroll", { "vim.wo.scroll", "true", "350", "sine", [['cursorline']] } }
+      t["<C-u>"] = { "scroll", { "-vim.wo.scroll", "true", "350", "sine", [['cursorline']] } }
+      t["<C-d>"] = { "scroll", { "vim.wo.scroll", "true", "350", "sine", [['cursorline']] } }
 
       require("neoscroll").setup {
         hide_cursor = true,
@@ -196,6 +196,29 @@ local plugins = {
       require("neoscroll.config").set_mappings(t)
     end,
   },
+  -- {
+  --   "diepm/vim-rest-console",
+  --   event = "VeryLazy",
+  --   config = function()
+  --     vim.g.rest_console_type = "json"
+  --     -- Turn off the default key binding
+  --     vim.g.vrc_set_default_mapping = 0
+  --
+  --     -- Set the default response content type to JSON
+  --     vim.g.vrc_response_default_content_type_content_type = "application/json"
+  --
+  --     -- - Set the output buffer name
+  --     vim.g.vrc_output_buffer_name = "_OUTPUT.json"
+  --
+  --     vim.g.vrc_auto_format_response_patterns = {
+  --       json = "python -m json.tool",
+  --     }
+  --
+  --     vim.g.vrc_curl_opts = {
+  --       ["-sS"] = "",
+  --     }
+  --   end,
+  -- },
 }
 
 return plugins

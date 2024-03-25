@@ -29,8 +29,11 @@ M.general = {
     ["<C-e>"] = {
       "<cmd>:TroubleToggle<CR>",
     },
-    ["<C-d>"] = {
+    ["<C-w>"] = {
       "<cmd>:NvimTreeFindFile<CR>",
+    },
+    ["<leader>sr"] = {
+      "<cmd>:call VrcQuery()<CR>",
     },
   },
   v = {

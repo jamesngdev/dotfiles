@@ -11,3 +11,5 @@ vim.opt.spell = true
 
 -- Set the spell language to en_us
 vim.opt.spelllang = "en_us"
+
+vim.o.cmdheight = 0
