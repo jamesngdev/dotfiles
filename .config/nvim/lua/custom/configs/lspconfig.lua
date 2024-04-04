@@ -120,8 +120,8 @@ lspconfig.emmet_ls.setup {
   },
 }
 
--- TailwindCSS setup
-
+-- -- TailwindCSS setup
+--
 local tailwind_on_attach = function(client, bufnr)
   -- other stuff --
   require("tailwindcss-colors").buf_attach(bufnr)
@@ -131,6 +131,7 @@ lspconfig.tailwindcss.setup {
   -- other settings --
   on_attach = tailwind_on_attach,
 }
+--
 
 -- Python setup
 lspconfig.pyright.setup {}
