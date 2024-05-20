@@ -3,7 +3,7 @@ return {
   event = "InsertEnter",
   dependencies = {
     "hrsh7th/cmp-buffer", -- source for text in buffer
-    "hrsh7th/cmp-path", -- source for file system paths
+    "hrsh7th/cmp-path",   -- source for file system paths
     {
       "L3MON4D3/LuaSnip",
       -- follow latest release.
@@ -11,9 +11,36 @@ return {
       -- install jsregexp (optional!).
       build = "make install_jsregexp",
     },
-    "saadparwaiz1/cmp_luasnip", -- for autocompletion
     "rafamadriz/friendly-snippets", -- useful snippets
-    "onsails/lspkind.nvim", -- vs-code like pictograms
+    "onsails/lspkind.nvim",         -- vs-code like pictograms
+    "git@github.com:windwp/nvim-autopairs.git",
+    -- cmp sources plugins
+    "saadparwaiz1/cmp_luasnip",
+    "hrsh7th/cmp-nvim-lua",
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-path",
+    {
+      -- snippet plugin
+      "L3MON4D3/LuaSnip",
+      dependencies = "rafamadriz/friendly-snippets",
+      enabled = true,
+      opts = { history = true, updateevents = "TextChanged,TextChangedI" },
+    },
+    {
+      "windwp/nvim-autopairs",
+      opts = {
+        fast_wrap = {},
+        disable_filetype = { "TelescopePrompt", "vim" },
+      },
+      config = function(_, opts)
+        require("nvim-autopairs").setup(opts)
+
+        -- setup cmp for autopairs
+        local cmp_autopairs = require "nvim-autopairs.completion.cmp"
+        require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+      end,
+    },
   },
   config = function()
     local cmp = require("cmp")
@@ -21,6 +48,11 @@ return {
     local luasnip = require("luasnip")
 
     local lspkind = require("lspkind")
+
+    -- setup cmp for autopairs
+    local cmp_autopairs = require "nvim-autopairs.completion.cmp"
+
+    require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
     -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
     require("luasnip.loaders.from_vscode").lazy_load()
@@ -40,12 +72,12 @@ return {
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
-        ["<C-e>"] = cmp.mapping.abort(), -- close completion window
+        ["<C-e>"] = cmp.mapping.abort(),        -- close completion window
         ["<CR>"] = cmp.mapping.confirm({ select = false }),
       }),
       -- sources for autocompletion
       sources = cmp.config.sources({
-        { name = "nvim_lsp"},
+        { name = "nvim_lsp" },
         -- { name = "luasnip" }, -- snippets
         --{ name = "buffer" }, -- text within current buffer
         { name = "path" }, -- file system paths
@@ -61,5 +93,3 @@ return {
     })
   end,
 }
-
-

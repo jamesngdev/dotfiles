@@ -3,9 +3,7 @@ vim.g.mapleader = " "
 local keymap = vim.keymap -- for conciseness
 
 keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
-
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
-
 keymap.set("n", "<leader>s", ":w<CR>", { desc = "Fast save" })
 
 -- increment/decrement numbers
@@ -35,4 +33,12 @@ keymap.set("i", "<C-l>", "<Right>", { desc = "Window Right" })
 keymap.set("i", "<C-j>", "<Down>", { desc = "Window Down" })
 keymap.set("i", "<C-k>", "<Up>", { desc = "Window Up" })
 
+
+-- Fast quit
+keymap.set('n', '<leader>q', ":q", { desc ="Fast quit" })
+keymap.set('n', '<leader>c', ":source $MYVIMRC", { desc ="Resource config" })
+
+-- BarBar
+keymap.set('n', '<leader>bl', "<cmd>BufferNext<CR>", { desc ="Buffer Next" })
+keymap.set('n', '<leader>bh', "<cmd>BufferPrevious<CR>", { desc ="Buffer BufferPrevious" })
 

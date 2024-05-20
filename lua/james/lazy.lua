@@ -12,12 +12,24 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({ { import = "james.plugins" }, { import = "james.plugins.lsp" } }, {
+  spec = { import =  "james.plugins" },
+  dev = {
+    path = "~/.config/nvim",
+    patterns = { "azemetre" },
+  },
   checker = {
     enabled = true,
     notify = false,
+    frequency = 900,
   },
   change_detection = {
     notify = false,
+    enabled = true,
+  },
+  ui = {
+    icons = {
+      plugin = "",
+    },
   },
 })
 
