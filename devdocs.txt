@@ -1,0 +1,5 @@
+# Create root user in Lunix
+su -
+adduser newuser
+usermod -aG sudo newuser
+su - newuser

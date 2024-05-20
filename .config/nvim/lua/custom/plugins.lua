@@ -152,21 +152,21 @@ local plugins = {
       }
     end,
   },
-  {
-    "folke/noice.nvim",
-    event = "VeryLazy",
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
-    },
-    opts = function()
-      return require "custom.configs.noice"
-    end,
-    keys = function()
-      return require "custom.configs.noice_keymap"
-    end,
-  },
   -- {
+  --   "folke/noice.nvim",
+  --   event = "VeryLazy",
+  --   dependencies = {
+  --     "MunifTanjim/nui.nvim",
+  --     "rcarriga/nvim-notify",
+  --   },
+  --   opts = function()
+  --     return require "custom.configs.noice"
+  --   end,
+  --   keys = function()
+  --     return require "custom.configs.noice_keymap"
+  --   end,
+  -- },
+  -- -- {
   --   "andweeb/presence.nvim",
   --   event = "VeryLazy",
   --   config = function()

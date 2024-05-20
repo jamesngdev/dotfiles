@@ -4,15 +4,6 @@ local M = {}
 M.general = {
   n = {
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
-
-    --  format with conform
-    ["<leader>r"] = {
-      function()
-        require("conform").format()
-      end,
-      "formatting",
-    },
-
     ["gb"] = { "<C-o>", "Go back to previous open file/buffer" },
     ["<leader>rn"] = {
       "<cmd>lua vim.lsp.buf.rename()<CR>",
@@ -34,6 +25,9 @@ M.general = {
     },
     ["<leader>sr"] = {
       "<cmd>:call VrcQuery()<CR>",
+    },
+    ["<leader>r"] = {
+      "<cmd>:EslintFixAll<CR>",
     },
   },
   v = {

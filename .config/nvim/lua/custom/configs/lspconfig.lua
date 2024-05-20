@@ -121,17 +121,29 @@ lspconfig.emmet_ls.setup {
 }
 
 -- -- TailwindCSS setup
---
+
 local tailwind_on_attach = function(client, bufnr)
-  -- other stuff --
-  require("tailwindcss-colors").buf_attach(bufnr)
+  -- Check if the tailwind config file exists in the current directory
+  local tailwind_config_files = { "tailwind.config.js", "tailwind.config.ts", "tailwind.config.json" }
+  local has_tailwind_config = false
+  for _, file in ipairs(tailwind_config_files) do
+    local full_path = vim.fn.expand "%:p:h" .. "/" .. file
+    if vim.fn.filereadable(full_path) == 1 then
+      has_tailwind_config = true
+      break
+    end
+  end
+
+  -- Load tailwind configuration only if the config file exists
+  if has_tailwind_config then
+    require("tailwindcss-colors").buf_attach(bufnr)
+  end
 end
 
 lspconfig.tailwindcss.setup {
   -- other settings --
   on_attach = tailwind_on_attach,
 }
---
 
 -- Python setup
 lspconfig.pyright.setup {}
