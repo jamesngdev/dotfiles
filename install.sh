@@ -80,6 +80,36 @@ install_deps() {
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
 
+  # Zsh
+  if ! command -v zsh &>/dev/null; then
+    info "Installing Zsh..."
+    if [[ "$OS" == "macos" ]]; then
+      brew install zsh
+    elif command -v apt-get &>/dev/null; then
+      sudo apt-get install -y zsh
+    elif command -v dnf &>/dev/null; then
+      sudo dnf install -y zsh
+    elif command -v pacman &>/dev/null; then
+      sudo pacman -S --noconfirm zsh
+    else
+      warn "Cannot auto-install zsh. Please install it manually."
+    fi
+
+    # Set zsh as default shell
+    if command -v zsh &>/dev/null; then
+      local zsh_path
+      zsh_path="$(command -v zsh)"
+      if ! grep -q "$zsh_path" /etc/shells; then
+        info "Adding $zsh_path to /etc/shells..."
+        echo "$zsh_path" | sudo tee -a /etc/shells >/dev/null
+      fi
+      info "Setting zsh as default shell..."
+      chsh -s "$zsh_path"
+    fi
+  else
+    info "Zsh already installed"
+  fi
+
   # Oh My Zsh
   if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
     info "Installing Oh My Zsh..."

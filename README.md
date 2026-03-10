@@ -5,7 +5,12 @@ Personal dotfiles for macOS and Linux, including Zsh, tmux, Neovim, and Starship
 ## Quick Install
 
 ```bash
+# SSH
 git clone git@github.com:jamesngdev/dotfiles.git ~/my-dotenv
+
+# or HTTPS
+git clone https://github.com/jamesngdev/dotfiles.git ~/my-dotenv
+
 cd ~/my-dotenv
 chmod +x install.sh
 ./install.sh
